@@ -1,0 +1,28 @@
+{% block article_list %}
+    {% if article_list %}
+        {% for article in article_list %}
+
+        标题：<a href= "{% url 'dlog_detail' article.id %}">{{ article.title }} </a><br>
+        <!--
+        作者：{{ article.author }}<br>
+        主题：{{ article.theme }}<br>
+        -->
+        分类：{{ article.category }}<br>
+        <!--
+        标签：{% for tag in article.tags.all %}{{ tag }}&nbsp;{% endfor %}<br>
+        -->
+        摘要：{{ article.abstract }}<br>
+        <!--
+        正文：{{ article.content }}<br>
+        创建时间：{{ article.created_time }}<br>
+        修改时间：{{ article.updated_time }}<br>
+        -->
+        点击量：{{ article.click_count }}<br>
+        评论数：{{ article.comment_count }}<br>
+        <hr>
+
+        {% endfor %}
+    {% else %}
+        暂无文章！
+    {% endif %}
+{% endblock %}

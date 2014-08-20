@@ -1,0 +1,9 @@
+{% block tags %}
+    {% if tags %}
+        {% for tag in tags %}
+            <a href="{% url 'dlog_get_by_tag' tag.id %}">{{ tag.name }}</a><br>
+        {% endfor %}
+    {% else %}
+        暂无标签！
+    {% endif %}
+{% endblock %}

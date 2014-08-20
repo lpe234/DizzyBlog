@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block article_list %}
+    {% if article_list %}
+        {% for article in article_list %}
+
+        <a href= "{% url 'dlog_detail' article.id %}">{{ article.title }} </a><br>
+        <!--
+        作者：{{ article.author }}<br>
+        主题：{{ article.theme }}<br>
+        -->
+        分类：{{ article.category }}<br>
+        <!--
+        标签：{% for tag in article.tags.all %}{{ tag }}&nbsp;{% endfor %}<br>
+        -->
+        摘要：{{ article.abstract }}<br>
+        <!--
+        正文：{{ article.content }}<br>
+        创建时间：{{ article.created_time }}<br>
+        修改时间：{{ article.updated_time }}<br>
+        -->
+        点击量：{{ article.click_count }}<br>
+        评论数：{{ article.comment_count }}<br><hr>
+        {% endfor %}
+    {% else %}
+        暂无文章！
+    {% endif %}
+{% endblock %}
+
+{% block currently_comment %}
+    {% if comments %}
+        {% for comment in comments %}
+            {{ comment.name }}==>{{ comment.context }}<br>
+        {% endfor %}
+    {% else %}
+        暂无评论！
+    {% endif %}
+{% endblock %}
+
+
+{% block tags %}
+    {% if tags %}
+        {% for tag in tags %}
+            <a href="{% url 'dlog_get_by_tag' tag.id %}">{{ tag.name }}</a><br>
+        {% endfor %}
+    {% else %}
+        暂无标签！
+    {% endif %}
+{% endblock %}
+<hr>

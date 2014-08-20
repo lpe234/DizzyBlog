@@ -1,0 +1,17 @@
+{% block ajax %}
+    <script>
+        $.ajax({
+            'type': 'POST',
+            'url': '',
+            'data': $('').serialize(),
+            'cache': false,
+            'dataType': 'html',
+            success: function(html, textStatus) {
+                $('').replaceWith(html);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $('').replaceWith('');
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head lang="zh-CN">
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static 'dlog/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dlog/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dlog/blog.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    <a class="blog-nav-item active" href="{% url 'dlog_index' %}">主页</a>
+                    <a class="blog-nav-item" href="{% url 'dlog_index' %}">列表</a>
+                    <a class="blog-nav-item" href="{% url 'dlog_currently_comment' %}">最新</a>
+                    <a class="blog-nav-item" href="{% url 'dlog_tags' %}">标签</a>
+                    <a class="blog-nav-item" href="{% url 'dlog_about' %}">关于</a>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="blog-header">
+                <h2 class="blog-title">Dizzy Blog</h2>
+                <p class="lead blog-description">just enjoy it.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 blog-main">
+                    {% block article_list %}{% endblock %}
+                    {% block comments %}{% endblock %}
+                </div>
+                <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+                        <h4>关于</h4>
+                        <p>使用 python2.7, django1.6, mysql5.6 搭建</p>
+                    </div>
+                    <div class="sidebar-module">
+                        <h4>最新评论</h4>
+                        {% block currently_comment %}{% endblock %}
+                    </div>
+                    <div class="sidebar-module">
+                        <h4>热门标签</h4>
+                        {% block tags %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-footer">
+            <p>Dizzy Blog build by Dizzy.</p>
+            <p>
+                <a href="#">Back to top</a>
+            </p>
+        </div>
+        <script src="{% static 'dlog/jquery.min.js' %}"></script>
+        <script src="{% static 'dlog/bootstrap.min.js' %}"></script>
+    </body>
+</html>
